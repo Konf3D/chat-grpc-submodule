@@ -37,7 +37,12 @@ set_source_files_properties(${PROTO_GENERATED_FILES} PROPERTIES SKIP_UNITY_BUILD
 
 target_include_directories(proto-objects PUBLIC "$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
 
-#add_library(chat-net ${PROTOBUF_SRC_FILES})
+add_library(chat-proto ${PROTO_GENERATED_FILES})
 
-#add_library(chat-net ${PROTO_GENERATED_FILES})
-#target_link_libraries(chat-net protobuf::libprotobuf gRPC::grpc++_unsecure)
+target_link_libraries(chat-proto PUBLIC protobuf::libprotobuf gRPC::grpc++_unsecure)
+
+find_package(gRPC CONFIG REQUIRED)
+target_link_libraries(chat-proto PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
+
+find_package(protobuf REQUIRED)
+target_link_libraries(chat-proto PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
