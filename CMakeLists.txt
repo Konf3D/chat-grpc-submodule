@@ -46,3 +46,8 @@ target_link_libraries(chat-proto PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC:
 
 find_package(protobuf REQUIRED)
 target_link_libraries(chat-proto PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+
+set_target_properties(chat-proto PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+)
