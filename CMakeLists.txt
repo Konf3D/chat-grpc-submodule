@@ -22,7 +22,7 @@ protobuf_generate(
     OUT_VAR PROTO_GENERATED_FILES
     IMPORT_DIRS ${PROTO_IMPORT_DIRS}
     PROTOC_OUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-set_source_files_properties(${PROTO_GENERATED_FILES} PROPERTIES SKIP_UNITY_BUILD_INCLUSION on)
+set_source_files_properties(${PROTO_GENERATED_FILES} PROPERTIES SKIP_UNITY_BUILD_INCLUSION off)
 
 protobuf_generate(
     TARGET proto-objects
@@ -33,7 +33,7 @@ protobuf_generate(
     # PLUGIN_OPTIONS "generate_mock_code=true"
     IMPORT_DIRS ${PROTO_IMPORT_DIRS}
     PROTOC_OUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-set_source_files_properties(${PROTO_GENERATED_FILES} PROPERTIES SKIP_UNITY_BUILD_INCLUSION on)
+set_source_files_properties(${PROTO_GENERATED_FILES} PROPERTIES SKIP_UNITY_BUILD_INCLUSION off)
 
 target_include_directories(proto-objects PUBLIC "$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
 
