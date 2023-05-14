@@ -39,6 +39,6 @@ target_include_directories(proto-objects PUBLIC "$<BUILD_INTERFACE:${PROTO_BINAR
 
 add_library(chat-proto ${PROTO_GENERATED_FILES})
 target_link_libraries(chat-proto PRIVATE proto-objects)
-target_link_libraries(chat-proto PRIVATE gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
-target_link_libraries(chat-proto PRIVATE gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
-target_link_libraries(chat-proto PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+#target_link_libraries(chat-proto PRIVATE gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
+#target_link_libraries(chat-proto PRIVATE gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
+#target_link_libraries(chat-proto PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
