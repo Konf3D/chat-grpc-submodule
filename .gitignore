@@ -402,3 +402,5 @@ FodyWeavers.xsd
 /chat.pb.cc
 /chat.pb.h
 /build
+/chat-proto.lib
+/libchat-proto.a

@@ -22,7 +22,7 @@ protobuf_generate(
     OUT_VAR PROTO_GENERATED_FILES
     IMPORT_DIRS ${PROTO_IMPORT_DIRS}
     PROTOC_OUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-set_source_files_properties(${PROTO_GENERATED_FILES} PROPERTIES SKIP_UNITY_BUILD_INCLUSION off)
+set_source_files_properties(${PROTO_GENERATED_FILES} PROPERTIES SKIP_UNITY_BUILD_INCLUSION on)
 
 protobuf_generate(
     TARGET proto-objects
@@ -33,21 +33,11 @@ protobuf_generate(
     # PLUGIN_OPTIONS "generate_mock_code=true"
     IMPORT_DIRS ${PROTO_IMPORT_DIRS}
     PROTOC_OUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-set_source_files_properties(${PROTO_GENERATED_FILES} PROPERTIES SKIP_UNITY_BUILD_INCLUSION off)
+set_source_files_properties(${PROTO_GENERATED_FILES} PROPERTIES SKIP_UNITY_BUILD_INCLUSION on)
 
 target_include_directories(proto-objects PUBLIC "$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
 
 add_library(chat-proto ${PROTO_GENERATED_FILES})
-
-target_link_libraries(chat-proto PUBLIC protobuf::libprotobuf gRPC::grpc++_unsecure)
-
-find_package(gRPC CONFIG REQUIRED)
 target_link_libraries(chat-proto PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
-
-find_package(protobuf REQUIRED)
+target_link_libraries(chat-proto PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
 target_link_libraries(chat-proto PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
-
-set_target_properties(chat-proto PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-)
