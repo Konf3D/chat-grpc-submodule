@@ -1,0 +1,27 @@
+
+syntax = "proto3";
+
+package chat;
+
+message User {
+  string username = 1;
+  string password = 2;
+  string email = 3;
+}
+
+message Message {
+  string sender = 1;
+  string receiver = 2;
+  string content = 3;
+}
+
+service ChatService {
+  rpc AuthenticateUser (User) returns (Token);
+  rpc RegisterUser (User) returns (Token);
+  rpc SendMessage (Message) returns (Token);
+  rpc GetMessageStream (Token) returns (stream Message);
+}
+
+message Token {
+  string message = 1;
+}
