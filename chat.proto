@@ -13,6 +13,7 @@ message Message {
   string sender = 1;
   string receiver = 2;
   string content = 3;
+  string date = 4;
 }
 
 service ChatService {
