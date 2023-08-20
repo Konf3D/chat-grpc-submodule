@@ -20,6 +20,9 @@ service ChatService {
   rpc RegisterUser (User) returns (Token);
   rpc SendMessage (Message) returns (Token);
   rpc GetMessageStream (Token) returns (stream Message);
+  rpc GetUsersList(Token) returns (stream Token);
+  rpc GetUserFriendList(Token) returns (stream Token);
+  rpc GetUserBannedList(Token) returns (stream Token);
 }
 
 message Token {
